@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "name": "Kemeja Formal Premium",
+        "price": 250000,
+        "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80",
+        "description": "Kemeja formal dengan bahan katun kualitas tinggi, cocok untuk kantor dan acara resmi.",
+        "category": "Kemeja"
+    },
+    {
+        "id": 2,
+        "name": "Kaos Polos Oversize",
+        "price": 120000,
+        "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80",
+        "description": "Kaos polos gaya oversize yang nyaman dan trendy. Bahan adem.",
+        "category": "Kaos"
+    },
+    {
+        "id": 3,
+        "name": "Celana Chino Slimfit",
+        "price": 300000,
+        "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+        "description": "Celana chino potongan slimfit yang modern. Tersedia dalam berbagai warna.",
+        "category": "Celana"
+    },
+    {
+        "id": 4,
+        "name": "Jaket Bomber Classic",
+        "price": 450000,
+        "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80",
+        "description": "Jaket bomber desain klasik. Tahan angin dan stylish.",
+        "category": "Jaket"
+    },
+    {
+        "id": 5,
+        "name": "Batik Modern Pria",
+        "price": 350000,
+        "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+        "description": "Batik motif modern dengan potongan pas badan.",
+        "category": "Batik"
+    },
+    {
+        "id": 6,
+        "name": "Celana Jeans Denim",
+        "price": 320000,
+        "image": "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?auto=format&fit=crop&w=800&q=80",
+        "description": "Celana jeans denim kuat dan tahan lama.",
+        "category": "Celana"
+    },
+    {
+        "id": 7,
+        "name": "Kemeja Batik Solo",
+        "price": 300000,
+        "image": "https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80",
+        "description": "Kemeja Batik motif Solo klasik dengan sentuhan modern.",
+        "category": "Batik"
+    },
+    {
+        "id": 8,
+        "name": "Kemeja Flannel Checkered",
+        "price": 275000,
+        "image": "assets/img/kemeja fanel.jpg",
+        "description": "Kemeja flannel motif kotak-kotak, hangat dan casual.",
+        "category": "Kemeja"
+    },
+    {
+        "id": 9,
+        "name": "Kaos Striped Navy",
+        "price": 135000,
+        "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80",
+        "description": "Kaos motif garis-garis warna navy, bahan cotton combed.",
+        "category": "Kaos"
+    },
+    {
+        "id": 10,
+        "name": "Celana Jeans Black",
+        "price": 340000,
+        "image": "assets/img/jeans.jpg",
+        "description": "Celana jeans hitam pekat, potongan skinny fit.",
+        "category": "Celana"
+    },
+    {
+        "id": 11,
+        "name": "Jaket Denim Vintage",
+        "price": 480000,
+        "image": "assets/img/vintage.jpg",
+        "description": "Jaket denim gaya vintage dengan detail washing artistik.",
+        "category": "Jaket"
+    },
+    {
+        "id": 12,
+        "name": "Batik Cap Pekalongan",
+        "price": 325000,
+        "image": "assets/img/batik cap.jpg",
+        "description": "Batik Cap asli Pekalongan, warna cerah dan tidak luntur.",
+        "category": "Batik"
+    },
+    {
+        "id": 13,
+        "name": "Kemeja Oxford Blue",
+        "price": 260000,
+        "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80",
+        "description": "Kemeja bahan Oxford warna biru muda, smart casual.",
+        "category": "Kemeja"
+    },
+    {
+        "id": 14,
+        "name": "Kaos V-Neck Maroon",
+        "price": 110000,
+        "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80",
+        "description": "Kaos V-Neck warna maroon polos, pas di badan.",
+        "category": "Kaos"
+    },
+    {
+        "id": 15,
+        "name": "Celana Chino Grey",
+        "price": 290000,
+        "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80",
+        "description": "Celana Chino warna abu-abu, cocok untuk kerja maupun santai.",
+        "category": "Celana"
+    },
+    {
+        "id": 16,
+        "name": "Jaket Hoodie Zipper",
+        "price": 250000,
+        "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80",
+        "description": "Jaket Hoodie dengan resleting, bahan fleece hangat.",
+        "category": "Jaket"
+    },
+    {
+        "id": 17,
+        "name": "Batik Tulis Halus",
+        "price": 850000,
+        "image": "assets/img/tulis halus.jpg",
+        "description": "Batik Tulis Premium, pengerjaan tangan detail dan eksklusif.",
+        "category": "Batik"
+    },
+    {
+        "id": 18,
+        "name": "Kemeja Linen White",
+        "price": 350000,
+        "image": "assets/img/line white.jpg",
+        "description": "Kemeja bahan linen murni warna putih, sejuk dipakai.",
+        "category": "Kemeja"
+    },
+    {
+        "id": 19,
+        "name": "Kaos Henley Long Sleeve",
+        "price": 160000,
+        "image": "https://images.unsplash.com/photo-1618354691438-25bc04584c23?auto=format&fit=crop&w=800&q=80",
+        "description": "Kaos model Henley lengan panjang, stylish.",
+        "category": "Kaos"
+    },
+    {
+        "id": 20,
+        "name": "Celana Cargo Pendek",
+        "price": 220000,
+        "image": "assets/img/cargo.jpg",
+        "description": "Celana cargo pendek dengan banyak saku praktis.",
+        "category": "Celana"
+    }
+]

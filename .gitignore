@@ -1,0 +1,22 @@
+# Konfigurasi Lokal & Kredensial Sensitif
+includes/payment_config.php
+.env
+config.php
+database.php
+*.env.*
+
+# Dependensi (jika menggunakan Composer)
+/vendor/
+
+# File Log & Cache
+*.log
+/cache/
+/tmp/
+
+# File Sistem Operasi
+.DS_Store
+Thumbs.db
+
+# Folder Editor / IDE
+.vscode/
+.idea/

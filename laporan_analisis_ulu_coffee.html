@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Analisis Proyek - Sistem E-Commerce & POS Ulu Coffee</title>
+    <style>
+        :root {
+            --primary-color: #4a2c11;
+            --accent-color: #b91c1c;
+            --text-color: #1f2937;
+            --border-color: #333333;
+            --bg-light: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, Georgia, serif;
+            color: var(--text-color);
+            background-color: #e2e8f0;
+            line-height: 1.6;
+            font-size: 12pt;
+        }
+
+        .no-print-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .toolbar-title {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .btn-action:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: #475569;
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #334155;
+        }
+
+        .doc-wrapper {
+            max-width: 210mm;
+            margin: 30px auto;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            padding: 30mm 25mm 25mm 30mm; /* Standar Margin Proposal Akademik: Kiri 30mm/40mm, Atas 30mm, Kanan 25mm, Bawah 25mm */
+        }
+
+        /* Cover Page */
+        .cover-page {
+            min-height: 240mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            page-break-after: always;
+        }
+
+        .cover-title {
+            font-size: 14pt;
+            font-weight: bold;
+            line-height: 1.5;
+            text-transform: uppercase;
+            margin-top: 10mm;
+            max-width: 165mm;
+        }
+
+        .logo-container {
+            margin: 15mm 0;
+        }
+
+        .logo-uti {
+            width: 140px;
+            height: auto;
+        }
+
+        .authors-box {
+            margin: 8mm 0;
+            font-size: 12pt;
+            text-align: center;
+            width: 100%;
+        }
+
+        .authors-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 11pt;
+        }
+
+        .authors-table td {
+            padding: 3px 14px;
+            border: none !important;
+            text-align: left;
+        }
+
+        .authors-table td.npm {
+            text-align: right;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .institution-box {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13pt;
+            line-height: 1.4;
+            margin-bottom: 10mm;
+        }
+
+        /* Document Body */
+        .content-section {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        h2.section-header {
+            font-size: 13pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+        }
+
+        h3.subsection-header {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-indent: 1.25cm;
+        }
+
+        .no-indent {
+            text-indent: 0;
+        }
+
+        ul, ol {
+            margin-left: 2.5cm;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* Tables */
+        table.doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            font-size: 11pt;
+        }
+
+        table.doc-table th, table.doc-table td {
+            border: 1px solid #333;
+            padding: 7px 10px;
+            vertical-align: top;
+        }
+
+        table.doc-table th {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        .note-italic {
+            font-style: italic;
+            font-size: 10.5pt;
+            color: #4b5563;
+            margin-top: 6px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        /* Print Media Query */
+        @media print {
+            body {
+                background: white;
+                font-size: 12pt;
+            }
+
+            .no-print-toolbar {
+                display: none !important;
+            }
+
+            .doc-wrapper {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .cover-page {
+                min-height: 100vh;
+                page-break-after: always;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 30mm 25mm 25mm 30mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-toolbar">
+        <div class="toolbar-title">Dokumen Analisis Proyek: Sistem E-Commerce & POS Web Ulu Coffee (Universitas Teknokrat Indonesia)</div>
+        <div style="display: flex; gap: 8px;">
+            <a href="http://localhost/ulu-coffee-web/" target="_blank" class="btn-action" style="background-color: #059669; text-decoration: none;">☕ Buka Website Ulu Coffee</a>
+            <button class="btn-action btn-secondary" onclick="navigator.clipboard.writeText(document.querySelector('.doc-wrapper').innerText); alert('Teks dokumen berhasil disalin ke clipboard!');">📋 Salin Teks</button>
+            <button class="btn-action" onclick="window.print();">🖨️ Cetak / Simpan ke PDF</button>
+        </div>
+    </div>
+
+    <div class="doc-wrapper">
+
+        <!-- ================= PAGE 1: COVER ================= -->
+        <div class="cover-page">
+            <div class="cover-title">
+                SISTEM E-COMMERCE DAN POINT OF SALE (POS) PEMESANAN KOPI BERBASIS WEB PADA ULU COFFEE UNTUK MENDUKUNG DIGITALISASI UMKM
+            </div>
+
+            <div class="logo-container">
+                <!-- SVG Lambang Universitas Teknokrat Indonesia -->
+                <svg class="logo-uti" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="150" cy="150" r="140" stroke="#b91c1c" stroke-width="8" fill="#fff" />
+                    <circle cx="150" cy="150" r="120" stroke="#111827" stroke-width="4" stroke-dasharray="6 4" />
+                    <path d="M150 45 L175 105 L240 105 L188 145 L208 205 L150 168 L92 205 L112 145 L60 105 L125 105 Z" fill="#b91c1c" opacity="0.15" />
+                    <path d="M150 60 C130 90 120 120 150 160 C180 120 170 90 150 60 Z" fill="#b91c1c" />
+                    <path d="M135 150 L165 150 L170 230 L130 230 Z" fill="#1f2937" />
+                    <rect x="110" y="165" width="80" height="15" rx="3" fill="#1f2937" />
+                    <text x="150" y="42" font-family="'Times New Roman', serif" font-weight="bold" font-size="18" fill="#b91c1c" text-anchor="middle">UNIVERSITAS TEKNOKRAT</text>
+                    <text x="150" y="278" font-family="'Times New Roman', serif" font-weight="bold" font-size="20" fill="#b91c1c" text-anchor="middle">INDONESIA</text>
+                </svg>
+            </div>
+
+            <div class="authors-box">
+                <p class="no-indent" style="font-weight: bold; margin-bottom: 8px;">Disusun Oleh (Kelompok 2):</p>
+                <table class="authors-table">
+                    <tr>
+                        <td>Andika Wijaya</td>
+                        <td class="npm">23312095</td>
+                    </tr>
+                    <tr>
+                        <td>M. Fathoni Maksum</td>
+                        <td class="npm">23312018</td>
+                    </tr>
+                    <tr>
+                        <td>Agung Pedro Zeboa</td>
+                        <td class="npm">24312098</td>
+                    </tr>
+                    <tr>
+                        <td>Aji Bagus Dewantara</td>
+                        <td class="npm">21312085</td>
+                    </tr>
+                    <tr>
+                        <td>Richard Ornando Nicholas</td>
+                        <td class="npm">24312047</td>
+                    </tr>
+                    <tr>
+                        <td>Fathuddin Zaki</td>
+                        <td class="npm">24312106</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="institution-box">
+                PROGRAM STUDI INFORMATIKA<br>
+                FAKULTAS TEKNIK DAN ILMU KOMPUTER<br>
+                UNIVERSITAS TEKNOKRAT INDONESIA<br>
+                2026
+            </div>
+        </div>
+
+        <!-- ================= BAGIAN A ================= -->
+        <div class="content-section">
+            <h2 class="section-header">A. IDENTITAS PROYEK</h2>
+            
+            <h3 class="subsection-header">A.1 Judul Proyek</h3>
+            <p class="no-indent" style="font-weight: bold;">
+                Sistem E-Commerce dan Point of Sale (POS) Pemesanan Kopi Berbasis Web pada Ulu Coffee untuk Mendukung Digitalisasi UMKM.
+            </p>
+
+            <h3 class="subsection-header">A.2 Deskripsi Proyek</h3>
+            <p>
+                Proyek ini merupakan usulan dan perancangan sistem informasi berbasis web yang mengintegrasikan layanan e-commerce pemesanan mandiri bagi pelanggan dengan modul kasir digital (<em>Point of Sale</em> / POS) serta panel administrasi terpadu untuk kedai kopi <strong>Ulu Coffee</strong>.
+            </p>
+            <p>
+                Sistem ini dirancang untuk memfasilitasi pelanggan dalam mengeksplorasi katalog produk (kopi olahan, minuman non-kopi, makanan utama, dan makanan ringan/snack), memeriksa ketersediaan stok secara transparan, melakukan pemesanan melalui keranjang belanja (<em>shopping cart</em>), hingga menyelesaikan proses <em>checkout</em> dan konfirmasi pembayaran secara mandiri. Di sisi operasional bisnis, sistem menyediakan modul kasir (POS) yang responsif dan cepat guna memproses transaksi pelanggan langsung di tempat (<em>dine-in</em> maupun <em>takeaway</em>), sekaligus memberikan kemudahan bagi pemilik atau admin kafe dalam mengelola data menu, inventaris stok, pemantauan status pesanan, serta rekapitulasi data penjualan secara terorganisasi dan <em>real-time</em>.
+            </p>
+
+            <h3 class="subsection-header">A.3 Target Pengguna</h3>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 32%;">Target Pengguna</th>
+                        <th>Peran dan Kebutuhan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pelanggan (<em>Customer</em>)</strong></td>
+                        <td>Melihat katalog menu dan harga terkini, memfilter produk berdasarkan kategori, mengelola keranjang belanja, melakukan pemesanan secara mandiri, memilih metode pembayaran dan pengiriman, serta memantau status transaksi pesanan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kasir / Barista</strong></td>
+                        <td>Melayani pemesanan langsung di tempat secara cepat menggunakan sistem kasir digital (<em>Point of Sale</em> / POS), menghitung total tagihan otomatis, memproses transaksi tunai/non-tunai, dan memantau antrean pesanan yang harus disajikan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Admin / Pemilik Kafe (<em>Owner</em>)</strong></td>
+                        <td>Mengelola master data produk (tambah, perbarui harga, foto, deskripsi, dan stok), mengelola akun pengguna, memverifikasi status pembayaran dan pesanan pelanggan, serta mengelola pesan komunikasi pelanggan.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-header">A.4 Keterkaitan dengan SDG</h3>
+            <p>
+                Proyek ini berkaitan erat dengan <strong>SDG 8 - Pekerjaan Layak dan Pertumbuhan Ekonomi (<em>Decent Work and Economic Growth</em>)</strong>, khususnya Target 8.3 yang mendorong kebijakan berorientasi pembangunan untuk mendukung produktivitas, kewirausahaan, serta pertumbuhan usaha mikro, kecil, dan menengah (UMKM) melalui pemanfaatan dan akses terhadap teknologi informasi serta digitalisasi layanan perdagangan.
+            </p>
+        </div>
+
+        <!-- ================= BAGIAN B ================= -->
+        <div class="content-section page-break">
+            <h2 class="section-header">B. ANALISIS MASALAH</h2>
+
+            <h3 class="subsection-header">B.1 Kondisi Saat Ini</h3>
+            <p>
+                Ulu Coffee merupakan unit usaha mikro (UMKM) kedai kopi yang menyajikan aneka minuman kopi pilihan, minuman non-kopi, serta kudapan pelengkap. Dalam operasional sehari-hari, alur interaksi dan transaksi pemesanan saat ini masih mengandalkan cara-cara konvensional:
+            </p>
+            <ol>
+                <li><strong>Pemesanan di Meja Kasir:</strong> Pelanggan yang datang langsung (<em>walk-in</em>) harus berkumpul dan mengantre di kasir untuk membaca lembaran menu cetak, memilih minuman, dan menunggu kasir mencatat rincian pesanan secara manual atau melalui catatan terpisah.</li>
+                <li><strong>Pemesanan Jarak Jauh via WhatsApp:</strong> Pelanggan yang ingin memesan terlebih dahulu untuk dibawa pulang (<em>takeaway</em>) atau dikirimkan harus menanyakan daftar menu, harga terbaru, dan ketersediaan stok melalui obrolan chat WhatsApp ke admin. Pada jam-jam ramai (<em>peak hours</em>), admin sering terlambat merespon pesan, sehingga pelanggan merasa enggan menunggu dan membatalkan pesanan.</li>
+                <li><strong>Pencatatan Penjualan dan Stok Terpisah:</strong> Tidak adanya sistem terpadu antara transaksi di meja kasir dan pesanan daring menimbulkan risiko selisih data stok fisik produk, potensi pesanan terlewat saat kafe padat, serta menyulitkan proses rekapitulasi omzet penjualan harian.</li>
+            </ol>
+
+            <h3 class="subsection-header">B.2 Masalah Utama</h3>
+            <p>
+                Fokus masalah utama adalah bagaimana merancang sistem web terpadu yang mempermudah pelanggan dalam mengakses katalog menu, harga, dan melakukan pemesanan secara mandiri, sekaligus menyediakan sistem kasir (POS) serta pengelolaan stok yang efisien bagi pengelola Ulu Coffee demi meminimalkan antrean dan meningkatkan akurasi transaksi.
+            </p>
+
+            <h3 class="subsection-header">B.3 Kemungkinan Penyebab</h3>
+            <ul>
+                <li>Belum tersedianya platform web resmi yang menyajikan etalase produk dan harga secara terpusat dan dapat diakses mandiri oleh pelanggan dari gawai masing-masing.</li>
+                <li>Proses pemesanan jarak jauh masih mengandalkan komunikasi chat manual yang rentan tertimbun dan lambat ditanggapi saat staf sibuk.</li>
+                <li>Kasir memerlukan waktu tambahan untuk melayani tanya-jawab seputar varian produk bagi pelanggan yang ragu di depan meja kasir.</li>
+                <li>Pencatatan kasir dan pengelolaan data stok belum tersimpan dalam satu basis data terpusat secara digital.</li>
+            </ul>
+            <span class="note-italic">Poin-poin tersebut merupakan identifikasi awal operasional yang dikonfirmasi melalui pengamatan alur kerja kedai kopi.</span>
+
+            <h3 class="subsection-header">B.4 Kemungkinan Dampak</h3>
+            <ul>
+                <li>Pelanggan membutuhkan waktu dan langkah tambahan untuk mengetahui menu serta harga terkini.</li>
+                <li>Terjadinya antrean panjang di depan meja kasir pada jam-jam sibuk.</li>
+                <li>Risiko kesalahan pencatatan pesanan (<em>human error</em>) oleh barista atau kasir saat situasi ramai.</li>
+                <li>Potensi hilangnya peluang penjualan (<em>lost sales</em>) akibat pelanggan enggan menunggu respon lambat obrolan manual.</li>
+                <li>Pencatatan stok dan laporan penjualan membutuhkan waktu rekapitulasi manual yang cukup lama setiap tutup buku.</li>
+            </ul>
+
+            <h3 class="subsection-header">B.5 Bukti Pendukung</h3>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 32%;">Bukti / Informasi</th>
+                        <th style="width: 24%;">Status</th>
+                        <th>Kegunaan dan Batasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pengalaman Pemesanan Manual via WhatsApp</strong></td>
+                        <td>Pengalaman pribadi & observasi</td>
+                        <td>Menunjukkan perlunya konfirmasi manual harga dan stok yang memakan waktu tunggu.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observasi Antrean Kasir di Jam Ramai</strong></td>
+                        <td>Pengamatan langsung di lokasi</td>
+                        <td>Menunjukkan adanya hambatan waktu ketika kasir melayani konsultasi menu sekaligus input transaksi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pengujian Basis Data Sistem Eksisting</strong></td>
+                        <td>Audit teknis kode & database</td>
+                        <td>Membuktikan arsitektur tabel produk, pesanan, dan modul kasir POS telah siap diintegrasikan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wawancara Pemilik & Staf Ulu Coffee</strong></td>
+                        <td>Wawancara awal</td>
+                        <td>Mengonfirmasi kebutuhan alat kasir digital yang ringan serta fitur pembaruan stok otomatis.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rujukan SDG 8 PBB</strong></td>
+                        <td>Sumber sekunder resmi</td>
+                        <td>Memberikan landasan urgensi pemberdayaan dan digitalisasi UMKM lokal F&B.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= BAGIAN C ================= -->
+        <div class="content-section page-break">
+            <h2 class="section-header">C. TUJUAN PROYEK</h2>
+            <ol>
+                <li>Mengidentifikasi alur proses bisnis pemesanan pada Ulu Coffee serta kendala operasional yang dialami pelanggan, kasir, dan pengelola.</li>
+                <li>Merancang dan membangun sistem e-commerce berbasis web yang menyajikan katalog lengkap menu kopi, non-kopi, makanan, dan snack dengan harga, foto, serta indikator stok yang transparan.</li>
+                <li>Membangun fitur transaksi mandiri bagi pelanggan meliputi keranjang belanja, formulir checkout, pemilihan metode pembayaran, dan pelacakan pesanan.</li>
+                <li>Membangun modul kasir digital (<em>Point of Sale</em> / POS) yang cepat dan mudah digunakan oleh barista/kasir untuk mempercepat pencatatan pesanan langsung di tempat.</li>
+                <li>Merancang panel kendali admin untuk manajemen produk, penyesuaian stok, pemantauan transaksi pesanan, manajemen akun pengguna, dan pesan masuk pelanggan.</li>
+                <li>Menganalisis kelayakan proyek dari aspek teknis, operasional, ekonomi, jadwal, dan sumber daya demi menjamin kesiapan implementasi sistem secara berkelanjutan.</li>
+            </ol>
+        </div>
+
+        <!-- ================= BAGIAN D ================= -->
+        <div class="content-section">
+            <h2 class="section-header">D. KEBUTUHAN PROYEK</h2>
+
+            <h3 class="subsection-header">D.1 Kebutuhan Fungsional</h3>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 6%;">No.</th>
+                        <th style="width: 32%;">Kebutuhan</th>
+                        <th style="width: 18%;">Prioritas</th>
+                        <th>Alasan & Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td>Katalog Produk & Filter Kategori</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Menampilkan seluruh varian menu (Kopi, Non Kopi, Makanan, Snack) beserta foto, harga, dan fitur pencarian.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td>Detail Produk & Keterangan Bahan</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Menyajikan deskripsi rasa, komposisi, berat kemasan, dan jumlah stok yang tersedia.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td>Keranjang Belanja (<em>Shopping Cart</em>)</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Memungkinkan pelanggan menambahkan menu, mengubah jumlah pesanan, dan menghitung subtotal belanja otomatis.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4</td>
+                        <td>Formulir Checkout & Pemesanan</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Mencatat identitas pemesan, nomor telepon, alamat tujuan, biaya ongkir, dan catatan khusus pesanan.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5</td>
+                        <td>Modul Kasir (<em>Point of Sale</em> / POS)</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Antarmuka khusus kasir/barista untuk memilih menu sekali klik, menghitung tagihan, dan mencatat transaksi langsung di kafe.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">6</td>
+                        <td>Manajemen Produk & Stok (Admin)</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Fitur bagi admin untuk menambah produk baru, mengunggah foto, menyunting harga, dan memperbarui jumlah stok.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">7</td>
+                        <td>Pengelolaan Status Pesanan</td>
+                        <td class="text-center"><strong>Utama</strong></td>
+                        <td>Memungkinkan admin memperbarui status pesanan (Pending, Processing, Completed) dan pelanggan dapat memantau statusnya.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">8</td>
+                        <td>Autentikasi Akun Pengguna & Profil</td>
+                        <td class="text-center">Pendukung</td>
+                        <td>Fasilitas registrasi, login, lupa kata sandi, serta pengaturan data profil pelanggan dan admin.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">9</td>
+                        <td>Layanan Pesan Kontak & Masukan</td>
+                        <td class="text-center">Pendukung</td>
+                        <td>Formulir kritik, saran, atau pertanyaan dari pelanggan yang langsung terhubung ke panel admin.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-header">D.2 Kebutuhan Nonfungsional</h3>
+            <ul>
+                <li><strong>Kemudahan Penggunaan (<em>Usability</em>):</strong> Desain antarmuka berorientasi kenyamanan pengguna dengan nuansa hangat kafe kopi, navigasi ringkas, dan alur belanja yang tidak membingungkan.</li>
+                <li><strong>Kompatibilitas Responsif:</strong> Halaman web dapat ditampilkan secara proporsional dan responsif pada berbagai ukuran layar ponsel cerdas, tablet, maupun komputer meja kasir.</li>
+                <li><strong>Keamanan Sistem (<em>Security</em>):</strong> Menggunakan otentikasi sesi PHP, pemisahan hak akses admin dan pelanggan, serta pengamanan kata sandi menggunakan fungsi hashing standar industri (<code>password_hash</code>).</li>
+                <li><strong>Kinerja & Waktu Respon:</strong> Waktu muat halaman kurang dari 2 detik dengan beban komputasi server yang ringan.</li>
+                <li><strong>Integritas Data Transaksi:</strong> Sinkronisasi pemotongan stok otomatis saat pesanan diproses guna menghindari penjualan melebihi stok yang ada (<em>overselling</em>).</li>
+            </ul>
+
+            <h3 class="subsection-header">D.3 Batasan Ruang Lingkup</h3>
+            <p>
+                Ruang lingkup proyek difokuskan pada penyediaan portal e-commerce mandiri bagi pelanggan, modul Point of Sale (POS) untuk barista di meja kasir, serta modul manajemen produk, pesanan, dan akun pengguna pada panel admin. Integrasi otomatis gerbang pembayaran perbankan (<em>automated payment gateway</em>) dan integrasi API kurir ojek online pihak ketiga belum termasuk dalam ruang lingkup tahap awal dan akan dipertimbangkan pada pengembangan versi lanjutan.
+            </p>
+        </div>
+
+        <!-- ================= BAGIAN E ================= -->
+        <div class="content-section page-break">
+            <h2 class="section-header">E. STAKEHOLDER</h2>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Stakeholder</th>
+                        <th style="width: 25%;">Peran</th>
+                        <th>Kebutuhan / Kepentingan Utama</th>
+                        <th style="width: 15%;">Pengaruh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pelanggan (<em>Customer</em>)</strong></td>
+                        <td>Pengguna akhir eksternal</td>
+                        <td>Memperoleh kejelasan daftar menu, harga, ketersediaan stok, dan kemudahan memesan kopi tanpa antre panjang.</td>
+                        <td class="text-center">Tinggi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kasir & Barista</strong></td>
+                        <td>Pengguna operasional internal</td>
+                        <td>Sistem kasir (POS) yang cepat, mudah digunakan, dan mempercepat pemrosesan antrean racikan minuman.</td>
+                        <td class="text-center">Tinggi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pemilik Ulu Coffee (<em>Owner</em>)</strong></td>
+                        <td>Pemilik usaha / pengambil keputusan</td>
+                        <td>Efisiensi operasional kafe, peningkatan omzet penjualan, serta transparansi rekapitulasi data penjualan dan inventaris.</td>
+                        <td class="text-center">Tinggi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tim Mahasiswa Pengembang</strong></td>
+                        <td>Perancang dan pengembang sistem</td>
+                        <td>Menganalisis kebutuhan, membangun arsitektur kode yang teruji, serta menyelesaikan luaran proyek sesuai tenggat waktu.</td>
+                        <td class="text-center">Tinggi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dosen Pengampu</strong></td>
+                        <td>Pembimbing dan evaluator akademik</td>
+                        <td>Memastikan analisis masalah berdasar bukti kuat, metodologi ilmiah terpenuhi, dan kontribusi seluruh anggota tim terbagi adil.</td>
+                        <td class="text-center">Tinggi</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= BAGIAN F ================= -->
+        <div class="content-section">
+            <h2 class="section-header">F. ANALISIS KELAYAKAN</h2>
+
+            <h3 class="subsection-header">F.1 Kelayakan Teknis</h3>
+            <p>
+                Proyek pengembangan sistem web Ulu Coffee dinilai <strong>sangat layak secara teknis</strong>. Sistem dibangun menggunakan arsitektur web berbasis PHP Native yang modular, basis data relasional MySQL/MariaDB, serta antarmuka HTML5, CSS3 kustom, dan JavaScript vanilla. Teknologi ini telah terbukti andal, ringan, didukung oleh komunitas luas, dan dapat dioperasikan secara lancar baik pada lingkungan server lokal (XAMPP/Apache) maupun server hosting berskala produksi tanpa membutuhkan spesifikasi perangkat keras yang mahal.
+            </p>
+
+            <h3 class="subsection-header">F.2 Kelayakan Operasional</h3>
+            <p>
+                Sistem dinilai <strong>sangat layak secara operasional</strong>. Modul kasir (POS) menyajikan tampilan kartu menu sekali-klik yang sangat mudah dikuasai oleh barista dalam waktu singkat tanpa memerlukan pelatihan khusus. Di sisi pelanggan, antarmuka pemesanan web yang ramah perangkat seluler memudahkan proses belanja mandiri dari mana saja tanpa perlu mengunduh aplikasi tambahan dari toko aplikasi.
+            </p>
+
+            <h3 class="subsection-header">F.3 Kelayakan Ekonomi</h3>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%;">Komponen Biaya</th>
+                        <th>Pertimbangan & Sumber Daya</th>
+                        <th style="width: 25%;">Estimasi Biaya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Perangkat Pengembangan</strong></td>
+                        <td>Memanfaatkan laptop pribadi yang telah dimiliki anggota kelompok.</td>
+                        <td class="text-center">Rp 0,-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perangkat Lunak & Perkakas</strong></td>
+                        <td>Menggunakan piranti lunak bersumber terbuka (VS Code, Git, XAMPP, PHP, MySQL).</td>
+                        <td class="text-center">Rp 0,-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hosting & Domain Web</strong></td>
+                        <td>Menggunakan paket shared hosting lokal terjangkau untuk kebutuhan operasional UMKM.</td>
+                        <td class="text-center">Rp 250.000 – Rp 400.000 / thn</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pemeliharaan Sistem</strong></td>
+                        <td>Dikelola secara mandiri oleh tim pengembang mahasiswa selama masa garansi uji coba.</td>
+                        <td class="text-center">Rp 0,-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                Secara ekonomi, sistem menghasilkan efisiensi biaya nyata dengan meniadakan biaya cetak ulang lembaran menu fisik, mencegah kerugian akibat salah pencatatan stok, serta mempercepat perputaran pesanan di jam sibuk.
+            </p>
+
+            <h3 class="subsection-header">F.4 Kelayakan Jadwal</h3>
+            <p>
+                Jangka waktu pengerjaan proyek diproyeksikan berlangsung selama <strong>satu hingga dua bulan</strong>, dengan rincian tahapan sebagai berikut:
+            </p>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Tahap</th>
+                        <th>Rencana Kegiatan Utama</th>
+                        <th style="width: 25%;">Target Waktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td>Observasi operasional kedai, identifikasi masalah, dan analisis kebutuhan pengguna.</td>
+                        <td>Minggu 1 – 2</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td>Perancangan arsitektur sistem, pemodelan basis data (ERD), dan alur data transaksi.</td>
+                        <td>Minggu 2 – 3</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td>Perancangan antarmuka pengguna (UI/UX) untuk halaman publik dan panel admin/POS.</td>
+                        <td>Minggu 3 – 4</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4</td>
+                        <td>Pengembangan kode modul inti (Katalog, Keranjang/Checkout, Modul POS, Panel Admin).</td>
+                        <td>Minggu 4 – 6</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5</td>
+                        <td>Pengujian fungsionalitas sistem (<em>Blackbox Testing</em>) dan perbaikan celah (<em>bug fixing</em>).</td>
+                        <td>Minggu 6 – 7</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">6</td>
+                        <td>Evaluasi hasil implementasi bersama pengelola kedai dan penyusunan laporan akhir.</td>
+                        <td>Minggu 7 – 8</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-header">F.5 Kelayakan Sumber Daya</h3>
+            <p>
+                Kelompok terdiri dari enam mahasiswa Program Studi Informatika Universitas Teknokrat Indonesia (Kelompok 2) dengan pembagian peran terstruktur sebagai berikut:
+            </p>
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Nama Anggota</th>
+                        <th style="width: 22%;">Peran</th>
+                        <th>Kontribusi yang Direncanakan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Andika Wijaya</strong></td>
+                        <td><em>Leader</em></td>
+                        <td>Koordinasi pembagian tugas tim, pemantauan jadwal tahapan, dan integrasi antar modul sistem.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M. Fathoni Maksum</strong></td>
+                        <td><em>Executor</em></td>
+                        <td>Mengkaji implementasi teknis backend PHP, konfigurasi basis data MySQL, pengembangan modul transaksi, dan integrasi modul kasir POS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agung Pedro Zeboa</strong></td>
+                        <td><em>Communicator</em></td>
+                        <td>Komunikasi dengan pemilik dan barista Ulu Coffee, pengumpulan kebutuhan lapangan, dan koordinasi sesi uji coba pengguna.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aji Bagus Dewantara</strong></td>
+                        <td><em>Communicator</em></td>
+                        <td>Menghimpun umpan balik pengguna, mendokumentasikan interaksi pelanggan, serta menyusun materi komunikasi dan presentasi proyek.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Richard Ornando Nicholas</strong></td>
+                        <td><em>Analyst</em></td>
+                        <td>Menganalisis kondisi operasional eksisting, merumuskan akar masalah, mengidentifikasi kemungkinan dampak, dan memvalidasi bukti pendukung.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fathuddin Zaki</strong></td>
+                        <td><em>Analyst</em></td>
+                        <td>Memetakan peran stakeholder, menganalisis spesifikasi kebutuhan fungsional & nonfungsional, serta mengkaji kelayakan teknis, ekonomi, dan jadwal.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="note-italic">
+                Pembagian peran di atas merupakan rancangan pembagian kontribusi terstruktur untuk menjamin keberhasilan pelaksanaan proyek dari tahap analisis hingga serah terima.
+            </p>
+        </div>
+
+        <!-- ================= BAGIAN G ================= -->
+        <div class="content-section page-break">
+            <h2 class="section-header">G. KESIMPULAN</h2>
+            <p>
+                Berdasarkan analisis awal yang komprehensif, proyek <strong>Sistem E-Commerce dan Point of Sale (POS) Pemesanan Kopi Berbasis Web pada Ulu Coffee untuk Mendukung Digitalisasi UMKM</strong> berstatus <strong>sangat layak untuk dilanjutkan ke tahap perencanaan dan pengembangan penuh</strong>.
+            </p>
+            <p>
+                Sistem ini menghadirkan perpaduan solusi yang efektif antara pemesanan mandiri oleh pelanggan (<em>customer-facing e-commerce</em>) dan otomatisasi operasional meja kasir (<em>merchant-facing POS</em>). Implementasi platform ini secara langsung menjawab tantangan antrean pada jam sibuk, mengurangi ketergantungan pada pemesanan manual via chat, menyajikan transparansi stok produk, serta mendukung pencapaian <strong>SDG 8</strong> dalam memberdayakan UMKM lokal melalui pemanfaatan teknologi digital tepat guna.
+            </p>
+            <p>
+                <strong>Rekomendasi awal kelompok:</strong>
+            </p>
+            <ol>
+                <li>Melakukan validasi lanjutan alur kerja modul Point of Sale (POS) bersama barista Ulu Coffee untuk memastikan kecepatan input transaksi di meja kasir.</li>
+                <li>Memprioritaskan kestabilan sinkronisasi stok antara transaksi offline kasir dan pesanan online pelanggan.</li>
+                <li>Menyesuaikan jadwal pengerjaan secara berkala dengan kalender akademik agar luaran proyek dapat diselesaikan tepat waktu dan teruji dengan baik.</li>
+            </ol>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+2025-12-13 17:55:37 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 17:57:12 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 17:57:17 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:01:39 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:05:47 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:11:17 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:43:07 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:43:38 API Error (401): {"error_messages":["Access denied due to unauthorized transaction, please check client or server key","Visit https://docs.midtrans.com/reference/backend-integration for more details"]}
+2025-12-13 18:48:08 API Error (400): {"error_messages":["transaction_details.order_id sudah digunakan"]}
+2025-12-14 15:37:16 API Error (400): {"error_messages":["transaction_details.order_id has already been taken"]}
+2025-12-14 15:37:21 API Error (400): {"error_messages":["transaction_details.order_id sudah digunakan"]}
+2025-12-14 15:37:33 API Error (400): {"error_messages":["transaction_details.order_id has already been taken"]}
+2025-12-14 15:38:44 API Error (400): {"error_messages":["transaction_details.order_id has already been taken"]}
+2025-12-14 15:38:51 API Error (400): {"error_messages":["transaction_details.order_id has already been taken"]}
+2025-12-14 17:06:36 API Error (400): {"error_messages":["transaction_details.order_id sudah digunakan"]}
