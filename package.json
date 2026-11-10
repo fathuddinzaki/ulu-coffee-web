@@ -1,5 +1,23 @@
 {
   "name": "ulu-coffe",
   "version": "1.0.0",
-  "description": "Ulu Coffee E-commerce project"
+  "description": "Ulu Coffee E-commerce project",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "bugs": {
+    "url": "https://github.com/fathuddinzaki/ulu-coffee-web/issues"
+  },
+  "homepage": "https://github.com/fathuddinzaki/ulu-coffee-web#readme",
+  "dependencies": {
+    "@vitejs/plugin-react": "^6.3.0",
+    "lucide-react": "^1.71.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5",
+    "vite": "^8.3.7"
+  }
 }

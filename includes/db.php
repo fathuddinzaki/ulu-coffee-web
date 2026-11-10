@@ -5,7 +5,7 @@ $is_local = (strpos($host_server, 'localhost') !== false || strpos($host_server,
 
 if ($is_local) {
     // Pengaturan Localhost (XAMPP)
-    $db_host = "localhost";
+    $db_host = "127.0.0.1";
     $db_user = "root";
     $db_pass = "";
     $db_name = "ulu_coffee";
@@ -18,11 +18,12 @@ if ($is_local) {
 }
 
 // Inisialisasi koneksi MySQL
+mysqli_report(MYSQLI_REPORT_OFF);
 $conn = @new mysqli($db_host, $db_user, $db_pass, $db_name);
 
 // Fallback otomatis jika remote gagal saat dijalankan lokal
 if ($conn->connect_error && !$is_local) {
-    $conn = @new mysqli("localhost", "root", "", "ulu_coffee");
+    $conn = @new mysqli("127.0.0.1", "root", "", "ulu_coffee");
 }
 
 if ($conn->connect_error) {
