@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useOrders } from '../context/OrderContext';
 import { formatRupiah } from '../data/products';
-import { CheckCircle2, QrCode, MessageCircle, ArrowRight, Coffee, Calendar, MapPin, Receipt } from 'lucide-react';
+import { CheckCircle2, QrCode, MessageCircle, ArrowRight, Coffee, Calendar, MapPin, Receipt, Printer } from 'lucide-react';
 
 export const ThankYou = () => {
   const { orderId } = useParams();
@@ -160,6 +160,15 @@ export const ThankYou = () => {
 
         {/* Buttons */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', justifyContent: 'center' }}>
+          <button
+            onClick={() => window.print()}
+            className="btn btn-outline"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+          >
+            <Printer size={18} />
+            <span>Cetak Struk</span>
+          </button>
+
           <a
             href={`https://wa.me/6281234567890?text=${encodeURIComponent(`Halo Kasir Ulu Coffee, saya sudah memesan dengan nomor pesanan: ${order?.id || orderId}`)}`}
             target="_blank"

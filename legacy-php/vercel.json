@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "ulu-coffe-legacy",
+  "functions": {
+    "**/*.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  },
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/includes/(.*)", "dest": "/includes/$1" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*).php", "dest": "/$1.php" },
+    { "src": "/(.*)", "dest": "/index.php" }
+  ]
+}
+

@@ -84,12 +84,13 @@ export const Navbar = () => {
 
             {/* Mobile Hamburger Button */}
             <button
-              className="hamburger"
+              className={`hamburger ${mobileMenuOpen ? 'active' : ''}`}
               onClick={toggleMobileMenu}
               aria-label="Toggle Menu"
-              style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'none', padding: '6px' }}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
           </div>
         </nav>
