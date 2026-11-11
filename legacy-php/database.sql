@@ -78,8 +78,9 @@ CREATE TABLE `users` (
 --
 -- Dumping data for table `users`
 --
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`, `role`) VALUES
-('ADM-001', 'Administrator', 'admin@toko.com', '$2y$10$8ZBO4a/l4M2.qPeCWM6OUeWz4BXkW7zUH6uQ1AtbtPglEofERKdoC', '2023-01-01 00:00:00', 'admin');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `created_at`, `role`) VALUES
+('ADM-001', 'Administrator', 'admin@toko.com', '$2y$10$8ZBO4a/l4M2.qPeCWM6OUeWz4BXkW7zUH6uQ1AtbtPglEofERKdoC', '08123456789', 'Bandar Lampung, Indonesia', '2023-01-01 00:00:00', 'admin'),
+('ADM-002', 'Aditiya Pratama', 'aditiya@ulucoffee.id', '$2y$12$cZaWTpjz1.nHAVMus2sYTuJvAnLrf2XnU4hk.dZzGHogDamzRIOdO', '081234567890', 'Padang, Sumatera Barat', '2026-11-11 00:00:00', 'admin');
 
 -- --------------------------------------------------------
 

@@ -1,6 +1,25 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { initialUsers } from '../data/users';
 
 const AuthContext = createContext();
+
+/**
+ * Mengambil seluruh daftar pengguna dari localStorage dan database seed awal.
+ */
+const getAllUsers = () => {
+  try {
+    const registered = JSON.parse(localStorage.getItem('ulu_registered_users') || '[]');
+    // Hindari duplikasi jika email sudah ada di localStorage
+    const seeded = initialUsers.filter(
+      (seed) => !registered.some((reg) => reg.email.toLowerCase() === seed.email.toLowerCase())
+    );
+    return [...seeded, ...registered];
+  } catch {
+    return initialUsers;
+  }
+};
+
+const toSessionUser = ({ password: _password, ...safeUser }) => safeUser;
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -21,82 +40,49 @@ export const AuthProvider = ({ children }) => {
   }, [user]);
 
   const login = (email, password) => {
-    // Admin check
-    if (email === 'admin@toko.com' && password === 'admin123') {
-      const adminUser = {
-        id: 'ADM-001',
-        name: 'Administrator Ulu',
-        email: 'admin@toko.com',
-        role: 'admin',
-        phone: '08123456789'
-      };
-      setUser(adminUser);
-      return { success: true, user: adminUser };
+    const normalizedEmail = email.trim().toLowerCase();
+    const allUsers = getAllUsers();
+    const found = allUsers.find((u) => u.email.toLowerCase() === normalizedEmail);
+
+    if (!found) {
+      return { success: false, message: 'Email tidak terdaftar di database.' };
     }
 
-    // Regular users storage check
-    const users = JSON.parse(localStorage.getItem('ulu_registered_users') || '[]');
-    const found = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-
-    if (found && found.password === password) {
-      const loggedUser = {
-        id: found.id,
-        name: found.name,
-        email: found.email,
-        phone: found.phone || '',
-        address: found.address || '',
-        role: found.role || 'user'
-      };
-      setUser(loggedUser);
-      return { success: true, user: loggedUser };
+    if (found.password !== password) {
+      return { success: false, message: 'Password yang Anda masukkan salah.' };
     }
 
-    // Quick demo login if user types anything valid
-    if (email && password) {
-      const demoUser = {
-        id: 'USR-' + Math.floor(1000 + Math.random() * 9000),
-        name: email.split('@')[0],
-        email: email,
-        phone: '0812' + Math.floor(10000000 + Math.random() * 90000000),
-        address: 'Padang, Sumatera Barat',
-        role: 'user'
-      };
-      setUser(demoUser);
-      return { success: true, user: demoUser };
-    }
-
-    return { success: false, message: 'Email atau password salah' };
+    const sessionUser = toSessionUser(found);
+    setUser(sessionUser);
+    return { success: true, user: sessionUser };
   };
 
   const register = ({ name, email, password, phone, address }) => {
-    const users = JSON.parse(localStorage.getItem('ulu_registered_users') || '[]');
-    if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
+    const normalizedEmail = email.trim().toLowerCase();
+    const allUsers = getAllUsers();
+
+    if (allUsers.some((u) => u.email.toLowerCase() === normalizedEmail)) {
       return { success: false, message: 'Email sudah terdaftar!' };
     }
 
     const newUser = {
       id: 'USR-' + Date.now(),
-      name,
-      email,
+      name: name.trim(),
+      email: normalizedEmail,
       password,
-      phone,
-      address,
-      role: 'user'
+      phone: phone?.trim() || '',
+      address: address?.trim() || '',
+      role: 'user',
+      createdAt: new Date().toISOString()
     };
 
-    users.push(newUser);
-    localStorage.setItem('ulu_registered_users', JSON.stringify(users));
+    const registered = JSON.parse(localStorage.getItem('ulu_registered_users') || '[]');
+    registered.push(newUser);
+    localStorage.setItem('ulu_registered_users', JSON.stringify(registered));
 
-    const loggedUser = {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      phone: newUser.phone,
-      address: newUser.address,
-      role: 'user'
-    };
-    setUser(loggedUser);
-    return { success: true, user: loggedUser };
+    const sessionUser = toSessionUser(newUser);
+    setUser(sessionUser);
+    return { success: true, user: sessionUser };
   };
 
   const logout = () => {
@@ -104,7 +90,24 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateProfile = (data) => {
-    setUser((prev) => ({ ...prev, ...data }));
+    setUser((prev) => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...data };
+
+      // Sinkronkan perubahan profil ke localStorage jika user berasal dari daftar registrasi
+      try {
+        const registered = JSON.parse(localStorage.getItem('ulu_registered_users') || '[]');
+        const idx = registered.findIndex((u) => u.email.toLowerCase() === prev.email.toLowerCase());
+        if (idx !== -1) {
+          registered[idx] = { ...registered[idx], ...data };
+          localStorage.setItem('ulu_registered_users', JSON.stringify(registered));
+        }
+      } catch (e) {
+        console.error('Failed to sync profile update', e);
+      }
+
+      return updated;
+    });
   };
 
   return (
@@ -121,4 +124,3 @@ export const useAuth = () => {
   }
   return context;
 };
-

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { User, Lock, Mail, Phone, Coffee, ArrowRight, Shield } from 'lucide-react';
 
@@ -17,8 +17,7 @@ export const Auth = () => {
 
   // If already logged in
   if (user) {
-    navigate('/profile');
-    return null;
+    return <Navigate to={user.role === 'admin' ? '/admin' : '/profile'} replace />;
   }
 
   const handleLogin = (e) => {
@@ -47,10 +46,18 @@ export const Auth = () => {
     }
   };
 
+  const fillPersonalAccount = () => {
+    setEmail('aditiya@ulucoffee.id');
+    setPassword('aditiya123');
+    setIsRegister(false);
+    setError('');
+  };
+
   const fillAdminDemo = () => {
     setEmail('admin@toko.com');
     setPassword('admin123');
     setIsRegister(false);
+    setError('');
   };
 
   return (
@@ -170,24 +177,46 @@ export const Auth = () => {
             </button>
 
             {/* Quick Demo Credentials */}
-            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '10px', textAlign: 'center' }}>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
               <button
                 type="button"
-                onClick={fillAdminDemo}
+                onClick={fillPersonalAccount}
                 style={{
-                  background: 'none',
-                  border: 'none',
+                  background: 'var(--secondary)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '8px',
+                  padding: '8px 14px',
                   color: 'var(--gold-dark)',
                   fontSize: '0.85rem',
                   fontWeight: 600,
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
+                  gap: '6px',
+                  width: '100%',
+                  justifyContent: 'center'
+                }}
+              >
+                <User size={14} />
+                <span>Masuk Cepat: Akun Khusus (Aditiya Pratama)</span>
+              </button>
+              <button
+                type="button"
+                onClick={fillAdminDemo}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--text-light)',
+                  fontSize: '0.8rem',
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
                   gap: '6px'
                 }}
               >
-                <Shield size={14} />
-                <span>Klik di sini untuk Akun Demo Admin</span>
+                <Shield size={13} />
+                <span>Gunakan Akun Admin Default (admin@toko.com)</span>
               </button>
             </div>
           </form>
